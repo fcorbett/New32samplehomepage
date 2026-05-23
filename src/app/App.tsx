@@ -93,8 +93,7 @@ function HeroSplit() {
             cosmetic and family dentistry · seattle
           </p>
           <h1 className="font-light text-3xl leading-tight mb-6">
-            Committed to providing patients with the highest standard of care in
-            the University District
+            Committed to providing patients with the highest standard of care
           </h1>
           <a
             href={phone.tel}
