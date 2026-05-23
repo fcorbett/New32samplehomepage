@@ -7,8 +7,24 @@ const CREATEJS_SCRIPTS = [
   "https://code.createjs.com/preloadjs-0.4.1.min.js",
 ] as const;
 
-const ANIMATION_SCRIPT = "/canvas-animation/canvas-animation.js";
-const DESIGN_SIZE = 444;
+const getAnimationScriptUrl = () =>
+  `${import.meta.env.BASE_URL}canvas-animation/canvas-animation.js`;
+
+function prefixPublicPath(path: string): string {
+  if (path.startsWith("/")) {
+    return `${import.meta.env.BASE_URL}${path.slice(1)}`;
+  }
+  return path;
+}
+
+function prefixManifestPaths(
+  manifest: { src: string; id: string }[],
+): { src: string; id: string }[] {
+  return manifest.map((item) => ({
+    ...item,
+    src: prefixPublicPath(item.src),
+  }));
+}
 
 function loadScript(src: string): Promise<void> {
   const existing = document.querySelector(`script[src="${src}"]`);
@@ -30,8 +46,10 @@ async function loadCreateJs(): Promise<void> {
   for (const src of CREATEJS_SCRIPTS) {
     await loadScript(src);
   }
-  await loadScript(ANIMATION_SCRIPT);
+  await loadScript(getAnimationScriptUrl());
 }
+
+const DESIGN_SIZE = 444;
 
 function applyCanvasSize(
   canvas: HTMLCanvasElement,
@@ -78,9 +96,18 @@ export function CanvasPhotoAnimation() {
     };
 
     const initAnimation = async () => {
+      const animationScriptUrl = getAnimationScriptUrl();
+      // #region agent log
+      fetch('http://127.0.0.1:7749/ingest/bb6381b1-e577-4cd7-b5bd-3f183977cc70',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'971215'},body:JSON.stringify({sessionId:'971215',runId:'post-fix',hypothesisId:'H1-H2',location:'CanvasPhotoAnimation.tsx:initAnimation',message:'canvas animation init paths',data:{baseUrl:import.meta.env.BASE_URL,animationScriptUrl,pagePath:window.location.pathname},timestamp:Date.now()})}).catch(()=>{});
+      // #endregion
       try {
         await loadCreateJs();
         if (cancelled || !mountedRef.current || !canvasRef.current) return;
+
+        const manifest = prefixManifestPaths(lib.properties.manifest);
+        // #region agent log
+        fetch('http://127.0.0.1:7749/ingest/bb6381b1-e577-4cd7-b5bd-3f183977cc70',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'971215'},body:JSON.stringify({sessionId:'971215',runId:'post-fix',hypothesisId:'H2',location:'CanvasPhotoAnimation.tsx:manifest',message:'manifest paths prefixed',data:{manifestSample:manifest[0]?.src},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
 
         const targetCanvas = canvasRef.current;
         images = images || {};
@@ -110,9 +137,15 @@ export function CanvasPhotoAnimation() {
             measureAndApply();
           });
           resizeObserver.observe(container);
+          // #region agent log
+          fetch('http://127.0.0.1:7749/ingest/bb6381b1-e577-4cd7-b5bd-3f183977cc70',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'971215'},body:JSON.stringify({sessionId:'971215',runId:'post-fix',hypothesisId:'H1-H2',location:'CanvasPhotoAnimation.tsx:complete',message:'canvas animation loaded successfully',data:{manifestCount:manifest.length},timestamp:Date.now()})}).catch(()=>{});
+          // #endregion
         });
-        loader.loadManifest(lib.properties.manifest);
+        loader.loadManifest(manifest);
       } catch (err) {
+        // #region agent log
+        fetch('http://127.0.0.1:7749/ingest/bb6381b1-e577-4cd7-b5bd-3f183977cc70',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'971215'},body:JSON.stringify({sessionId:'971215',runId:'post-fix',hypothesisId:'H1-H2',location:'CanvasPhotoAnimation.tsx:catch',message:'canvas animation failed',data:{error:String(err),animationScriptUrl},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
         console.error("Canvas animation failed to load:", err);
       }
     };
