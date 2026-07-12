@@ -25,9 +25,15 @@ export const versions: VersionEntry[] = [
   },
   {
     id: "v3-pnw-luxury",
-    label: "V3 — PNW luxury",
+    label: "V3 — PNW luxury A",
     description: "Modern Pacific Northwest — warm neutrals, editorial",
     component: lazy(() => import("./v3-pnw-luxury/App")),
+  },
+  {
+    id: "v4-pnw-luxury-b",
+    label: "V4 — PNW luxury B",
+    description: "Pacific Northwest — sage, airy, modern studio",
+    component: lazy(() => import("./v4-pnw-luxury-b/App")),
   },
 ];
 

@@ -1,0 +1,40 @@
+.theme-pnw-b {
+  --pnwb-ink: #1f2420;
+  --pnwb-ink-soft: #5e6862;
+  --pnwb-stone: #f7f8f5;
+  --pnwb-stone-deep: #eaece6;
+  --pnwb-white: #fdfefb;
+  --pnwb-sage: #7e9b8a;
+  --pnwb-sage-deep: #4a6b5a;
+  --pnwb-warmgray: #9a948d;
+  --pnwb-border: #d9ddd7;
+
+  --pnwb-font-display: "DM Serif Display", "Times New Roman", serif;
+  --pnwb-font-body: "DM Sans", system-ui, -apple-system, sans-serif;
+
+  --pnwb-container: 72rem;
+
+  background-color: var(--pnwb-stone);
+  color: var(--pnwb-ink);
+  font-family: var(--pnwb-font-body);
+}
+
+.theme-pnw-b .font-display {
+  font-family: var(--pnwb-font-display);
+}
+
+.theme-pnw-b .pnwb-container {
+  max-width: var(--pnwb-container);
+  margin-inline: auto;
+  width: 100%;
+}
+
+.theme-pnw-b .pnwb-hero-row {
+  container-type: inline-size;
+}
+
+@media (min-width: 1024px) {
+  .theme-pnw-b .pnwb-hero-pad {
+    padding-left: max(4rem, calc((100cqw - var(--pnwb-container)) / 2));
+  }
+}
