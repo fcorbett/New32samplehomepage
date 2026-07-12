@@ -1,1 +1,7 @@
 node_modules
+.DS_Store
+.figma/make/dev
+.figma/make/env
+.figma/make/install
+.figma/make/setup
+.figma/make/verify

@@ -1,15 +1,15 @@
-import imgLogo from "../imports/Variation1EditorialSplitV2/076566151a847a70ed0da5d0025b82e9e671fbba.png";
-import { CanvasPhotoAnimation } from "./components/CanvasPhotoAnimation";
-import { FeaturedQuote } from "./components/FeaturedQuote";
-import { OfficeHours } from "./components/OfficeHours";
-import { StickyMobileBar } from "./components/StickyMobileBar";
-import { TrustStrip } from "./components/TrustStrip";
-import imgRectangle from "../imports/Variation1EditorialSplitV2/cde4fe2d8a2336157a774459ccad20bdd2f69f4b.png";
-import imgRectangle1 from "../imports/Variation1EditorialSplitV2/6e710aeee4ee940f7ca90e74bd956b48af76288f.png";
-import imgRectangle2 from "../imports/Variation1EditorialSplitV2/4eea9f3c49af300361a5255f380ef56944927452.png";
-import imgYelp from "../imports/yelp.svg";
-import { phone } from "../content/siteFacts";
-import { ImageWithFallback } from "./components/figma/ImageWithFallback";
+import imgLogo from "../../imports/Variation1EditorialSplitV2/076566151a847a70ed0da5d0025b82e9e671fbba.png";
+import { CanvasPhotoAnimation } from "../../app/components/CanvasPhotoAnimation";
+import { FeaturedQuote } from "../../app/components/FeaturedQuote";
+import { OfficeHours } from "../../app/components/OfficeHours";
+import { StickyMobileBar } from "../../app/components/StickyMobileBar";
+import { TrustStripV1 } from "./TrustStrip";
+import imgRectangle from "../../imports/Variation1EditorialSplitV2/cde4fe2d8a2336157a774459ccad20bdd2f69f4b.png";
+import imgRectangle1 from "../../imports/Variation1EditorialSplitV2/6e710aeee4ee940f7ca90e74bd956b48af76288f.png";
+import imgRectangle2 from "../../imports/Variation1EditorialSplitV2/4eea9f3c49af300361a5255f380ef56944927452.png";
+import imgYelp from "../../imports/yelp.svg";
+import { phone } from "../../content/siteFacts";
+import { ImageWithFallback } from "../../app/components/figma/ImageWithFallback";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
@@ -312,7 +312,7 @@ export default function App() {
       <div className="max-w-[888px] mx-auto bg-white shadow-[0_10px_15px_rgba(0,0,0,0.20)] overflow-x-hidden">
         <Navbar />
         <HeroSplit />
-        <TrustStrip />
+        <TrustStripV1 />
         <Intro />
         <FeaturedQuote />
         <PhotoStrip />

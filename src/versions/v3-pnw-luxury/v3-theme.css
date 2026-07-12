@@ -1,0 +1,58 @@
+/**
+ * V3 — Modern PNW Luxury design tokens.
+ * Scoped to `.theme-pnw` (the V3 App root) so this never affects V1/V2.
+ * Change contrast, color, or type here — every local V3 component reads
+ * these variables, so this is the one file to edit for the whole look.
+ */
+.theme-pnw {
+  --pnw-ink: #232019;
+  --pnw-ink-soft: #5b5646;
+  --pnw-stone: #f5f1e8;
+  --pnw-stone-deep: #e9e0cd;
+  --pnw-white: #fffcf6;
+  --pnw-moss: #5f6b4f;
+  --pnw-moss-deep: #333b29;
+  --pnw-clay: #a9784f;
+  --pnw-border: #ddd2ba;
+
+  --pnw-font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --pnw-font-body: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Shared max-width so every contained section aligns to the same
+     left/right edges on large screens. Hero and PhotoGallery stay
+     full-bleed (no pnw-container) so their imagery can use the full
+     screen width — see .pnw-hero-pad below for how Hero's text column
+     still lines up with this same edge. */
+  --pnw-container: 72rem;
+
+  background-color: var(--pnw-stone);
+  color: var(--pnw-ink);
+  font-family: var(--pnw-font-body);
+}
+
+.theme-pnw .font-display {
+  font-family: var(--pnw-font-display);
+}
+
+.theme-pnw .pnw-container {
+  max-width: var(--pnw-container);
+  margin-inline: auto;
+  width: 100%;
+}
+
+/* Hero stays full-bleed (no pnw-container) so its image can use the full
+   screen width, but its text column's left edge should still land on the
+   same line as pnw-container's edge once the viewport exceeds the
+   container's max-width — otherwise the hero copy reads as flush against
+   the browser edge while every section below it is inset.
+   container-type (rather than 100vw) keeps this measured from the row's
+   actual laid-out width, matching pnw-container exactly instead of
+   drifting by a scrollbar's width. */
+.theme-pnw .pnw-hero-row {
+  container-type: inline-size;
+}
+@media (min-width: 1024px) {
+  .theme-pnw .pnw-hero-pad {
+    padding-left: max(4rem, calc((100cqw - var(--pnw-container)) / 2));
+  }
+}

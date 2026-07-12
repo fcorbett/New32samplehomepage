@@ -4,8 +4,9 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build": "vite build",
-    "dev": "vite"
+    "build": "vite build && cp docs/index.html docs/404.html",
+    "dev": "vite --open /New32samplehomepage/",
+    "preview": "vite preview --open /New32samplehomepage/"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",

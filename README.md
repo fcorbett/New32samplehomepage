@@ -8,4 +8,8 @@
   Run `npm i` to install the dependencies.
 
   Run `npm run dev` to start the development server.
+
+  Open the app at `http://localhost:5173/New32samplehomepage/` (trailing slash required in local dev).
+
+  Published GitHub Pages URL: `https://<user>.github.io/New32samplehomepage/`
   
