@@ -30,6 +30,12 @@ export const versions: VersionEntry[] = [
     component: lazy(() => import("./v3-pnw-luxury/App")),
   },
   {
+    id: "v3-1-pnw-luxury",
+    label: "V3.1 — PNW luxury A (team hero)",
+    description: "V3 with team hero, new32 branding, University Village",
+    component: lazy(() => import("./v3-1-pnw-luxury/App")),
+  },
+  {
     id: "v4-pnw-luxury-b",
     label: "V4 — PNW luxury B",
     description: "Pacific Northwest — sage, airy, modern studio",
