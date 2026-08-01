@@ -5,3 +5,17 @@ node_modules
 .figma/make/install
 .figma/make/setup
 .figma/make/verify
+
+# Local env (Vite)
+.env
+.env.local
+.env.*.local
+
+# Transient SSR build output (removed after prerender)
+docs/.ssr
+
+# Contact form secrets & runtime state (DreamHost)
+public/api/config.php
+public/api/storage/rate-limit.json
+public/api/storage/*.json
+!public/api/storage/.gitkeep

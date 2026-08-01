@@ -1,5 +1,12 @@
-import { createRoot } from "react-dom/client";
-import PrototypeShell from "./app/PrototypeShell.tsx";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import ProductionApp from "./app/ProductionApp.tsx";
 import "./styles/index.css";
 
-createRoot(document.getElementById("root")!).render(<PrototypeShell />);
+const rootEl = document.getElementById("root")!;
+
+// hydrateRoot when the home route was prerendered into #root; otherwise client-render.
+if (rootEl.hasChildNodes()) {
+  hydrateRoot(rootEl, <ProductionApp />);
+} else {
+  createRoot(rootEl).render(<ProductionApp />);
+}

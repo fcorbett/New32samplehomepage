@@ -1,0 +1,2 @@
+# Deny web access to rate-limit state and any other storage files
+Require all denied

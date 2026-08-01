@@ -1,0 +1,99 @@
+/**
+ * V5 — Modern PNW Luxury design tokens (fork of V3).
+ * Scoped to `.theme-pnw-5` so this never affects V3 or other versions.
+ */
+.theme-pnw-5 {
+  --pnw-ink: #232019;
+  --pnw-ink-soft: #5b5646;
+  --pnw-stone: #f5f1e8;
+  --pnw-stone-deep: #e9e0cd;
+  --pnw-white: #fffcf6;
+  --pnw-moss: #5f6b4f;
+  --pnw-moss-deep: #333b29;
+  /* #87603f ≈ 4.93:1 on stone — AA for body text (was #a9784f at 3.40:1) */
+  --pnw-clay: #87603f;
+  /* Lighter clay for decorative accents (stars, bullets) where large/
+     non-text contrast is enough; not for small body/UI text. */
+  --pnw-clay-accent: #a9784f;
+  --pnw-border: #ddd2ba;
+
+  --pnw-font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --pnw-font-body: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Shared max-width so every contained section aligns to the same
+     left/right edges on large screens. Hero and PhotoGallery stay
+     full-bleed (no pnw-container) so their imagery can use the full
+     screen width — see .pnw-hero-pad below for how Hero's text column
+     still lines up with this same edge. */
+  --pnw-container: 72rem;
+
+  background-color: var(--pnw-stone);
+  color: var(--pnw-ink);
+  font-family: var(--pnw-font-body);
+}
+
+/* Standalone text links (e.g. "See full gallery") — 44×44px touch target */
+.theme-pnw-5 .pnw-text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* Nav / menu row links — same minimum target size */
+.theme-pnw-5 .pnw-nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* Keyboard focus: distinct ring for light surfaces */
+.theme-pnw-5 a:focus-visible,
+.theme-pnw-5 button:focus-visible {
+  outline: 2px solid var(--pnw-moss);
+  outline-offset: 3px;
+}
+
+/* Focus ring on dark bands (footer, call CTA, sticky mobile bar) */
+.theme-pnw-5 [data-pnw-on-dark] a:focus-visible,
+.theme-pnw-5 [data-pnw-on-dark] button:focus-visible {
+  outline-color: var(--pnw-white);
+}
+
+.theme-pnw-5 .font-display {
+  font-family: var(--pnw-font-display);
+}
+
+.theme-pnw-5 .pnw-container {
+  max-width: var(--pnw-container);
+  margin-inline: auto;
+  width: 100%;
+}
+
+/* Hero stays full-bleed (no pnw-container) so its image can use the full
+   screen width, but its text column's left edge should still land on the
+   same line as pnw-container's edge once the viewport exceeds the
+   container's max-width — otherwise the hero copy reads as flush against
+   the browser edge while every section below it is inset.
+   container-type (rather than 100vw) keeps this measured from the row's
+   actual laid-out width, matching pnw-container exactly instead of
+   drifting by a scrollbar's width. */
+.theme-pnw-5 .pnw-hero-row {
+  container-type: inline-size;
+}
+@media (min-width: 1024px) {
+  .theme-pnw-5 .pnw-hero-pad {
+    padding-left: max(4rem, calc((100cqw - var(--pnw-container)) / 2));
+  }
+}
+
+/* Team hero: keep both faces in frame across tall/narrow crops.
+   Faces sit upper-middle; bias upward so object-cover doesn't crop heads. */
+.theme-pnw-5 .pnw-hero-photo {
+  object-fit: cover;
+  object-position: center 28%;
+}
+@media (max-width: 1023px) {
+  .theme-pnw-5 .pnw-hero-photo {
+    object-position: center 22%;
+  }
+}

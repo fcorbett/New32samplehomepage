@@ -1,19 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>new32 Cosmetic and Family Dentistry | Seattle, University District</title>
+    <meta
+      name="description"
+      content="new32 Cosmetic and Family Dentistry in Seattle's University District. Family, cosmetic, and restorative care. Call 206.381.0732 to schedule."
+    />
+    <link rel="icon" href="/new32-seattle-dentistry-logo.svg" type="image/svg+xml" />
+    <!-- Self-hosted font preloads (latin subset, most-used weights) -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/inter-latin-400-normal.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/cormorant-garamond-latin-500-normal.woff2"
+      crossorigin
+    />
+    <!-- Google Analytics deferred until window load (see end of body) -->
+    <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
+  </head>
 
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>new32 Cosmetic and Family Dentistry | Seattle, University District</title>
-      <meta
-        name="description"
-        content="new32 Cosmetic and Family Dentistry in Seattle's University District. Family, cosmetic, and restorative care. Call 206-381-0732 to schedule."
-      />
-      <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
-    </head>
-
-    <body>
-      <div id="root"></div>
-      <script type="module" src="/src/main.tsx"></script>
-    </body>
-  </html>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      function loadGtag() {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-PQ3X8RDYHS';
+        s.onload = function () {
+          gtag('js', new Date());
+          gtag('config', 'G-PQ3X8RDYHS');
+        };
+        document.head.appendChild(s);
+      }
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadGtag, { timeout: 4000 });
+      } else {
+        window.addEventListener('load', function () {
+          setTimeout(loadGtag, 1);
+        });
+      }
+    </script>
+  </body>
+</html>

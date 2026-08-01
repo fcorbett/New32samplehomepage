@@ -1,9 +1,9 @@
 export const phone = {
-  display: "206-381-0732",
-  tel: "tel:206-381-0732",
+  display: "206.381.0732",
+  tel: "tel:2063810732",
 };
 
-export const fax = "206-381-0513";
+export const fax = "206.381.0513";
 
 const GOOGLE_PLACE_ID = "ChIJf2vOKoYUkFQRj-vIo3pM35w";
 
@@ -37,6 +37,8 @@ export const location = {
   mapsUrl:
     "https://www.google.com/maps/dir//new32+Aesthetic+and+Family+Dentistry/",
   googlePlacesUrl: `https://www.google.com/maps/place/?q=place_id:${GOOGLE_PLACE_ID}`,
+  /** Official Maps embed for the Google Business Profile (no API key). */
+  mapsEmbedUrl: `https://www.google.com/maps/embed?pb=!1m2!2m1!1splace_id:${GOOGLE_PLACE_ID}`,
 };
 
 export const lastUpdated = "May 2026";

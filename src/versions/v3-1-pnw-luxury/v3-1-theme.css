@@ -66,3 +66,25 @@
     object-position: center 22%;
   }
 }
+
+/* Contact form thank-you entrance */
+@keyframes pnw-thanks-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.theme-pnw-31 .contact-thanks-enter {
+  animation: pnw-thanks-enter 0.55s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-pnw-31 .contact-thanks-enter {
+    animation: none;
+  }
+}

@@ -1,4 +1,7 @@
 @import 'tailwindcss' source(none);
-@source '../**/*.{js,ts,jsx,tsx}';
-
-@import 'tw-animate-css';
+/* Production-only scan — excludes prototype versions and unused shadcn ui */
+@source '../app/ProductionApp.tsx';
+@source '../app/components/ContactForm.tsx';
+@source '../versions/v5-multipage/**/*.{js,ts,jsx,tsx}';
+@source '../content/**/*.{js,ts,jsx,tsx}';
+@source '../main.tsx';

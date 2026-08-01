@@ -8,6 +8,7 @@ import { Services } from "./components/Services";
 import { QuoteBand } from "./components/QuoteBand";
 import { OfficeHours } from "./components/OfficeHours";
 import { Awards } from "./components/Awards";
+import { ContactSection } from "./components/ContactSection";
 import { Footer } from "./components/Footer";
 import { StickyMobileBar } from "./components/StickyMobileBar";
 
@@ -23,6 +24,7 @@ export default function App() {
       <QuoteBand />
       <OfficeHours />
       <Awards />
+      <ContactSection />
       <Footer />
       <StickyMobileBar />
     </div>

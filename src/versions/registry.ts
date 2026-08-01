@@ -41,6 +41,12 @@ export const versions: VersionEntry[] = [
     description: "Pacific Northwest — sage, airy, modern studio",
     component: lazy(() => import("./v4-pnw-luxury-b/App")),
   },
+  {
+    id: "v5-multipage",
+    label: "V5 — Multi-page",
+    description: "V3.1 design with full site pages, bios, optimized UX/SEO",
+    component: lazy(() => import("./v5-multipage/App")),
+  },
 ];
 
 export const defaultVersionId =

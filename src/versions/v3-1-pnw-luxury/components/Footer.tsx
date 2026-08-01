@@ -13,10 +13,7 @@ export function Footer() {
   const { google } = reviews;
 
   return (
-    <footer
-      id="contact"
-      className="w-full bg-[var(--pnw-ink)] text-[var(--pnw-white)] px-6 md:px-16 py-10 md:py-12 pb-24 md:pb-12"
-    >
+    <footer className="w-full bg-[var(--pnw-ink)] text-[var(--pnw-white)] px-6 md:px-16 py-10 md:py-12 pb-24 md:pb-12">
       <div className="pnw-container flex flex-col md:flex-row md:items-start w-full gap-8 md:gap-4 text-left text-sm">
         <div className="flex flex-col gap-2 md:flex-1">
           <p className="font-semibold tracking-wide opacity-70 text-xs">

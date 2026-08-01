@@ -175,7 +175,7 @@ function Frame6() {
   return (
     <div className="content-stretch flex flex-col gap-[8px] items-end relative shrink-0" data-name="Frame">
       <p className="font-['Inter:Bold',sans-serif] font-bold leading-[normal] opacity-70 relative shrink-0">phone</p>
-      <p className="[text-underline-position:from-font] decoration-from-font decoration-solid font-['Inter:Regular',sans-serif] font-normal leading-[1.5] relative shrink-0 underline">206-381-0732</p>
+      <p className="[text-underline-position:from-font] decoration-from-font decoration-solid font-['Inter:Regular',sans-serif] font-normal leading-[1.5] relative shrink-0 underline">206.381.0732</p>
     </div>
   );
 }
