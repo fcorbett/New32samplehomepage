@@ -12,6 +12,14 @@ const root = path.resolve(__dirname, "..");
 const indexPath = path.resolve(root, "docs/index.html");
 const ssrEntry = path.resolve(root, "docs/.ssr/entry-server.js");
 
+/** Full home URL for StaticRouter (must include Vite base / router basename). */
+function homeLocation() {
+  const raw = process.env.VITE_BASE_PATH;
+  if (raw === undefined || raw === "" || raw === "/") return "/";
+  const trimmed = raw.replace(/^\/+|\/+$/g, "");
+  return trimmed ? `/${trimmed}/` : "/";
+}
+
 async function main() {
   if (!fs.existsSync(indexPath)) {
     console.error("docs/index.html missing — run vite build first");
@@ -23,7 +31,15 @@ async function main() {
   }
 
   const { render } = await import(pathToFileURL(ssrEntry).href);
-  const appHtml = render("/");
+  const location = homeLocation();
+  const appHtml = render(location);
+
+  if (!appHtml || appHtml.trim().length === 0) {
+    console.error(
+      `Prerender produced empty HTML for location "${location}" — check router basename`,
+    );
+    process.exit(1);
+  }
 
   if (appHtml.includes("/@imagetools/")) {
     console.error("Prerender produced /@imagetools/ URLs — SSR bundle is wrong");
@@ -50,7 +66,7 @@ async function main() {
   );
 
   fs.writeFileSync(indexPath, html);
-  console.log("Prerendered / into docs/index.html");
+  console.log(`Prerendered ${location} into docs/index.html`);
 }
 
 main().catch((err) => {

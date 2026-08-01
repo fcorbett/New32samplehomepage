@@ -11,7 +11,12 @@ Run `npm run dev` to start the development server.
 
 Open the app at `http://localhost:5173/`.
 
-Build output lands in `docs/` (`npm run build`). Deploy the built files **and** `api/` to DreamHost; Apache `.htaccess` handles SPA deep links and legacy WordPress redirects.
+Build output lands in `docs/`.
+
+- **GitHub Pages** (project site under `/New32samplehomepage/`): `npm run build:gh-pages`
+- **Custom domain / DreamHost** (site at `/`): `npm run build` or `npm run build:production`
+
+Deploy the built files **and** `api/` to DreamHost; Apache `.htaccess` handles SPA deep links and legacy WordPress redirects. GitHub Pages is static-only (no PHP contact endpoint).
 
 ## Contact form
 

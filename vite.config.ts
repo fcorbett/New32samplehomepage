@@ -4,6 +4,18 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { imagetools } from 'vite-imagetools'
 
+/**
+ * Resolve Vite `base` from VITE_BASE_PATH.
+ * - unset / empty / "/" → domain root (DreamHost / custom domain)
+ * - "/New32samplehomepage" or "New32samplehomepage/" → project-pages path
+ */
+function resolveBase(): string {
+  const raw = process.env.VITE_BASE_PATH
+  if (raw === undefined || raw === '' || raw === '/') return '/'
+  const trimmed = raw.replace(/^\/+|\/+$/g, '')
+  return trimmed ? `/${trimmed}/` : '/'
+}
+
 function figmaAssetResolver() {
   return {
     name: 'figma-asset-resolver',
@@ -21,10 +33,14 @@ function figmaAssetResolver() {
  */
 function heroImagePreload(): Plugin {
   const avifByBytes: { fileName: string; bytes: number }[] = []
+  let base = '/'
 
   return {
     name: 'hero-image-preload',
     apply: 'build',
+    configResolved(config) {
+      base = config.base
+    },
     generateBundle(_options, bundle) {
       for (const file of Object.values(bundle)) {
         if (file.type !== 'asset') continue
@@ -47,12 +63,16 @@ function heroImagePreload(): Plugin {
       handler(html) {
         if (avifByBytes.length === 0) return html
         // Smaller file ≈ smaller width (480 < 800 < 1024)
-        const sorted = [...avifByBytes].sort((a, b) => a.bytes - b.bytes)
+        const sorted = [...avifByBytes]
+          .sort((a, b) => a.bytes - b.bytes)
+          .slice(0, 3)
         const widths = [480, 800, 1024].slice(0, sorted.length)
+        const toUrl = (fileName: string) =>
+          `${base}${fileName.replace(/^\/+/, '')}`
         const srcset = sorted
-          .map((c, i) => `/${c.fileName.replace(/^\/+/, '')} ${widths[i]}w`)
+          .map((c, i) => `${toUrl(c.fileName)} ${widths[i]}w`)
           .join(', ')
-        const href = '/' + sorted[0].fileName.replace(/^\/+/, '')
+        const href = toUrl(sorted[0].fileName)
         const sizes = '(min-width: 1024px) 50vw, 100vw'
         const tag = `<link rel="preload" as="image" href="${href}" imagesrcset="${srcset}" imagesizes="${sizes}" type="image/avif" fetchpriority="high" />`
         return html.replace('</head>', `    ${tag}\n  </head>`)
@@ -62,7 +82,7 @@ function heroImagePreload(): Plugin {
 }
 
 export default defineConfig({
-  base: '/',
+  base: resolveBase(),
   build: {
     outDir: 'docs',
     rollupOptions: {

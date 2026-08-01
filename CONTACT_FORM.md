@@ -29,7 +29,7 @@ VITE_FORM_ENDPOINT=https://new32dental.com/api/contact.php
 
 Copy [`.env.example`](.env.example) to `.env.local` for local overrides (`.env.local` is gitignored if you add it).
 
-**Note:** Production must serve the built site **and** `api/` on DreamHost. The Vite `base` is `/` (domain root). GitHub Pages is static-only and **cannot** run PHP.
+**Note:** Production must serve the built site **and** `api/` on DreamHost. Use `npm run build` / `build:production` (`base` `/`) for the custom domain; use `npm run build:gh-pages` for the GitHub project site. GitHub Pages is static-only and **cannot** run PHP.
 
 ## One-time Google Cloud / OAuth setup (agency)
 
