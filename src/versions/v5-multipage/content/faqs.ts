@@ -46,9 +46,4 @@ export const servicesFaqs: FaqItem[] = [
     answer:
       "Mom and kids can be seen at the same time, or one right after another. It can help a nervous child to see mom, dad, sister or brother do it first.",
   },
-  {
-    question: "What are Kids Days?",
-    answer:
-      "Kids only. Fun activities such as dress-up/costumes, balloons, prizes, kids movies and more!",
-  },
 ];

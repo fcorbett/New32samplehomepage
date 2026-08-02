@@ -8,12 +8,6 @@ import imgOffice1 from "../../../imports/our-office/062207-14-1.jpg?w=400;800&fo
 import imgOffice2 from "../../../imports/our-office/july-07-10b-1.jpg?w=400;800&format=avif;webp;jpg&as=picture";
 import imgOffice3 from "../../../imports/our-office/july-07-11-1.jpg?w=400;800&format=avif;webp;jpg&as=picture";
 import imgOffice4 from "../../../imports/our-office/july-07-12-1.jpg?w=400;800&format=avif;webp;jpg&as=picture";
-import imgKids1 from "../../../imports/kids-day/img-0578.jpg?w=400;800&format=avif;webp;jpg&as=picture";
-import imgKids2 from "../../../imports/kids-day/img-0582.jpg?w=400;800&format=avif;webp;jpg&as=picture";
-import imgKids3 from "../../../imports/kids-day/img-0586.jpg?w=400;800&format=avif;webp;jpg&as=picture";
-import imgKids4 from "../../../imports/kids-day/kids-day-1.jpg?w=400;800&format=avif;webp;jpg&as=picture";
-import imgKids5 from "../../../imports/kids-day/kids-day-2.jpg?w=400;800&format=avif;webp;jpg&as=picture";
-import imgKids6 from "../../../imports/kids-day/luke.jpg?w=400;800&format=avif;webp;jpg&as=picture";
 import imgBeforeAfter1 from "../../../imports/before-and-after/img-0002.jpg?w=400;800&format=avif;webp;jpg&as=picture";
 import imgBeforeAfter2 from "../../../imports/before-and-after/img-0016.jpg?w=400;800&format=avif;webp;jpg&as=picture";
 import imgBeforeAfter3 from "../../../imports/before-and-after/bracken-1.jpg?w=400;800&format=avif;webp;jpg&as=picture";
@@ -108,10 +102,6 @@ export const servicesPage: PageContent & {
       body: "Mom and kids can be seen at the same time, or one right after another. It can help a nervous child to see mom, dad, sister or brother do it first.",
     },
     {
-      title: "Kids Days",
-      body: "Kids only. Fun activities such as dress-up/costumes, balloons, prizes, kids movies and more!",
-    },
-    {
       title: "TV/DVD in all rooms",
       body: "Our DVD collection includes a wide selection of kid's movies.",
     },
@@ -199,7 +189,7 @@ export const galleryPage: {
   lead: string;
   sections: {
     heading: string;
-    // headings from live site: gallery, kids day, before & after
+    // headings from live site: gallery, before & after
     photos: { picture: PictureData; alt: string }[];
   }[];
   seo: PageSeo;
@@ -218,17 +208,6 @@ export const galleryPage: {
       ],
     },
     {
-      heading: "Kids day",
-      photos: [
-        { picture: imgKids1, alt: "Kids day at new32" },
-        { picture: imgKids2, alt: "Kids day at new32" },
-        { picture: imgKids3, alt: "Kids day at new32" },
-        { picture: imgKids4, alt: "Kids day at new32" },
-        { picture: imgKids5, alt: "Kids day at new32" },
-        { picture: imgKids6, alt: "Kids day at new32" },
-      ],
-    },
-    {
       heading: "Before & after",
       photos: [
         { picture: imgBeforeAfter1, alt: "Before and after smile at new32" },
@@ -241,7 +220,7 @@ export const galleryPage: {
   seo: {
     title: "Gallery | new32 Cosmetic and Family Dentistry | Seattle",
     description:
-      "Gallery of the new32 office, kids day, and smiles at our Seattle dental practice near University Village.",
+      "Gallery of the new32 office and smiles at our Seattle dental practice near University Village.",
     dateModified: "July 2026",
   },
 };

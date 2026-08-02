@@ -1,4 +1,3 @@
-import { seattleMetYears } from "../../../content/siteFacts";
 import { ScrollReveal } from "./ScrollReveal";
 
 const badgeSrc = `${import.meta.env.BASE_URL}awards/seattle-met-top-dentist-2026.png`;
@@ -22,25 +21,10 @@ export function Awards() {
           />
         </ScrollReveal>
 
-        <ScrollReveal delay={0.1} className="w-full">
-          <p className="text-center font-display italic text-[var(--pnw-ink-soft)] text-lg md:text-xl mb-6">
+        <ScrollReveal delay={0.1}>
+          <p className="text-center font-display italic text-[var(--pnw-ink-soft)] text-lg md:text-xl">
             Seattle Met Top Dentist, every year since 2015
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-x-5 gap-y-3">
-            {seattleMetYears.map((year, i) => (
-              <span key={year} className="flex items-center gap-x-5">
-                <span className="font-display text-[var(--pnw-ink)] text-lg md:text-xl tracking-wide">
-                  {year}
-                </span>
-                {i < seattleMetYears.length - 1 && (
-                  <span
-                    aria-hidden="true"
-                    className="w-1 h-1 rounded-full bg-[var(--pnw-clay-accent)]"
-                  />
-                )}
-              </span>
-            ))}
-          </div>
         </ScrollReveal>
       </div>
     </section>
