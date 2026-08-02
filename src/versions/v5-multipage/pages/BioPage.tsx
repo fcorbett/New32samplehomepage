@@ -10,7 +10,7 @@ import { Breadcrumbs } from "../components/Breadcrumbs";
 import { JsonLd } from "../components/JsonLd";
 import { ScrollReveal } from "../components/ScrollReveal";
 import { PictureImage } from "../components/PictureImage";
-import { personSchema } from "../content/schema";
+import { absoluteAssetUrl, personSchema } from "../content/schema";
 import { useVersionPath } from "../hooks/useVersionPath";
 
 function linkPhrase(
@@ -45,7 +45,13 @@ export function BioPage() {
     return <Navigate to={aboutTo} replace />;
   }
 
-  const schema = personSchema(member);
+  const schema = personSchema({
+    name: member.name,
+    slug: member.slug,
+    image: absoluteAssetUrl(member.image.img.src),
+    shortBlurb: member.shortBlurb,
+    personSchema: member.personSchema,
+  });
 
   return (
     <>

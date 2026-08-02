@@ -14,7 +14,9 @@ export function SiteLayout() {
   return (
     <>
       <Navbar />
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
       <Footer />
       <StickyMobileBar />
     </>

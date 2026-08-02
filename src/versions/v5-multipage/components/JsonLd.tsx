@@ -2,10 +2,7 @@ type JsonLdProps = {
   data: Record<string, unknown> | Record<string, unknown>[];
 };
 
-/**
- * Injects JSON-LD for SEO/AEO. Client-side for this prototype;
- * production would include this in the initial HTML.
- */
+/** Injects JSON-LD for SEO/AEO (included in prerendered HTML). */
 export function JsonLd({ data }: JsonLdProps) {
   return (
     <script

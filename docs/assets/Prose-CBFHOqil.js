@@ -1,1 +1,0 @@
-import{j as s}from"./react-vendor-BVujZ77b.js";function r({children:e,className:t=""}){return s.jsx("div",{className:`text-[var(--pnw-ink-soft)] text-base md:text-lg leading-relaxed space-y-5 ${t}`,children:e})}export{r as P};

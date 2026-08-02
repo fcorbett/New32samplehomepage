@@ -1,5 +1,5 @@
 /**
- * Post-build prerender of the home route into docs/index.html.
+ * Post-build prerender of all public routes into docs/*.html.
  * Uses the production SSR bundle (vite build --ssr) so imagetools
  * URLs resolve to /assets/* — not the /@imagetools/* dev middleware paths.
  */
@@ -9,15 +9,61 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
-const indexPath = path.resolve(root, "docs/index.html");
-const ssrEntry = path.resolve(root, "docs/.ssr/entry-server.js");
+const docsDir = path.resolve(root, "docs");
+const indexPath = path.resolve(docsDir, "index.html");
+const ssrEntry = path.resolve(docsDir, ".ssr/entry-server.js");
 
-/** Full home URL for StaticRouter (must include Vite base / router basename). */
-function homeLocation() {
+function viteBasePath() {
   const raw = process.env.VITE_BASE_PATH;
   if (raw === undefined || raw === "" || raw === "/") return "/";
   const trimmed = raw.replace(/^\/+|\/+$/g, "");
   return trimmed ? `/${trimmed}/` : "/";
+}
+
+function stripShellHead(html) {
+  return html
+    .replace(/<title>[^<]*<\/title>\s*/i, "")
+    .replace(/<meta\s+name=["']description["'][^>]*>\s*/i, "")
+    .replace(/<link\s+rel=["']canonical["'][^>]*>\s*/i, "")
+    .replace(/<meta\s+name=["']robots["'][^>]*>\s*/i, "")
+    .replace(/<meta\s+(?:property|name)=["']og:[^"']+["'][^>]*>\s*/gi, "")
+    .replace(/<meta\s+name=["']twitter:[^"']+["'][^>]*>\s*/gi, "");
+}
+
+function injectRoot(html, appHtml) {
+  if (html.includes('<div id="root"></div>')) {
+    return html.replace(
+      '<div id="root"></div>',
+      `<div id="root">${appHtml}</div>`,
+    );
+  }
+  if (html.includes('id="root"')) {
+    return html.replace(
+      /<div id="root">[\s\S]*?<\/div>\s*(?=<script type="module")/,
+      `<div id="root">${appHtml}</div>\n    `,
+    );
+  }
+  throw new Error('Could not find #root in docs/index.html');
+}
+
+function injectHead(html, headTags) {
+  const cleaned = stripShellHead(html);
+  if (!cleaned.includes("</head>")) {
+    throw new Error("Could not find </head> in HTML template");
+  }
+  return cleaned.replace("</head>", `    ${headTags}\n  </head>`);
+}
+
+/** Home-only LCP preload must not appear on interior routes. */
+function stripHomeHeroPreload(html) {
+  return html.replace(
+    /\s*<link\s+rel="preload"\s+as="image"[^>]*nicole-goddard-team-hero[^>]*>\s*/gi,
+    "\n",
+  );
+}
+
+function ensureDir(filePath) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
 }
 
 async function main() {
@@ -30,43 +76,72 @@ async function main() {
     process.exit(1);
   }
 
-  const { render } = await import(pathToFileURL(ssrEntry).href);
-  const location = homeLocation();
-  const appHtml = render(location);
+  const {
+    render,
+    publicPaths,
+    htmlOutPath,
+    routerLocationForPath,
+    serializeHeadTags,
+  } = await import(pathToFileURL(ssrEntry).href);
 
-  if (!appHtml || appHtml.trim().length === 0) {
-    console.error(
-      `Prerender produced empty HTML for location "${location}" — check router basename`,
-    );
-    process.exit(1);
-  }
+  const template = fs.readFileSync(indexPath, "utf-8");
+  const base = viteBasePath();
+  const paths = publicPaths();
+  const allJobs = [
+    ...paths.map((p) => ({ path: p, out: htmlOutPath(p), notFound: false })),
+    { path: "__404__", out: "404.html", notFound: true },
+  ];
 
-  if (appHtml.includes("/@imagetools/")) {
-    console.error("Prerender produced /@imagetools/ URLs — SSR bundle is wrong");
-    process.exit(1);
-  }
+  let written = 0;
+  for (const job of allJobs) {
+    const location = job.notFound
+      ? routerLocationForPath("this-page-does-not-exist", base)
+      : routerLocationForPath(job.path, base);
 
-  let html = fs.readFileSync(indexPath, "utf-8");
-  if (!html.includes('<div id="root"></div>')) {
-    // Already prerendered or unexpected shape — reset root if needed
-    if (html.includes('id="root"')) {
-      html = html.replace(
-        /<div id="root">[\s\S]*?<\/div>\s*<script type="module"/,
-        '<div id="root"></div>\n    <script type="module"',
+    const { html: appHtml, head } = render(location);
+
+    if (!appHtml || appHtml.trim().length === 0) {
+      console.error(
+        `Prerender produced empty HTML for location "${location}"`,
       );
-    } else {
-      console.error('Could not find #root in docs/index.html');
       process.exit(1);
     }
+    if (appHtml.includes("/@imagetools/")) {
+      console.error("Prerender produced /@imagetools/ URLs — SSR bundle is wrong");
+      process.exit(1);
+    }
+    if (job.notFound && !head.robots?.includes("noindex")) {
+      console.error("404 prerender missing noindex robots meta");
+      process.exit(1);
+    }
+
+    let html = injectRoot(template, appHtml);
+    html = injectHead(html, serializeHeadTags(head));
+    if (job.path !== "") {
+      html = stripHomeHeroPreload(html);
+    }
+
+    const outFile = path.resolve(docsDir, job.out);
+    ensureDir(outFile);
+    fs.writeFileSync(outFile, html);
+    written += 1;
+    console.log(`Prerendered ${location} → docs/${job.out}`);
   }
 
-  html = html.replace(
-    /<div id="root"><\/div>/,
-    `<div id="root">${appHtml}</div>`,
-  );
-
-  fs.writeFileSync(indexPath, html);
-  console.log(`Prerendered ${location} into docs/index.html`);
+  const sitemapUrls = paths.map((p) => {
+    const loc = p
+      ? `https://new32dental.com/${p}`
+      : "https://new32dental.com/";
+    return `  <url><loc>${loc}</loc></url>`;
+  });
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapUrls.join("\n")}
+</urlset>
+`;
+  fs.writeFileSync(path.resolve(docsDir, "sitemap.xml"), sitemap);
+  console.log(`Wrote docs/sitemap.xml (${paths.length} URLs)`);
+  console.log(`Prerendered ${written} HTML files`);
 }
 
 main().catch((err) => {

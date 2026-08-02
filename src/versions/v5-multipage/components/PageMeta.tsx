@@ -1,39 +1,41 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router";
 import { canonicalUrl } from "../content/schema";
+import { applyHeadToDocument, useHead } from "./HeadContext";
 
 type PageMetaProps = {
   title: string;
   description: string;
+  /** e.g. "noindex, follow" for 404 */
+  robots?: string;
 };
 
 /**
- * Client-side document head updates.
- * Production prerender/SSR would emit these in initial HTML for crawlers.
+ * Sets document head for SEO/AEO/sharing.
+ * During SSR, writes into HeadProvider bag; on the client, syncs the DOM.
  */
-export function PageMeta({ title, description }: PageMetaProps) {
+export function PageMeta({ title, description, robots }: PageMetaProps) {
   const { pathname } = useLocation();
   const canonical = canonicalUrl(pathname);
+  const { head, setHead } = useHead();
+
+  const patch = {
+    title,
+    description,
+    canonical,
+    robots,
+    ogTitle: title,
+    ogDescription: description,
+    ogUrl: canonical,
+  };
+
+  // Synchronous write so SSR can read head after renderToString.
+  setHead(patch);
 
   useEffect(() => {
-    document.title = title;
-
-    let meta = document.querySelector('meta[name="description"]');
-    if (!meta) {
-      meta = document.createElement("meta");
-      meta.setAttribute("name", "description");
-      document.head.appendChild(meta);
-    }
-    meta.setAttribute("content", description);
-
-    let link = document.querySelector('link[rel="canonical"]');
-    if (!link) {
-      link = document.createElement("link");
-      link.setAttribute("rel", "canonical");
-      document.head.appendChild(link);
-    }
-    link.setAttribute("href", canonical);
-  }, [title, description, canonical]);
+    setHead(patch);
+    applyHeadToDocument(head);
+  }, [title, description, canonical, robots, pathname]);
 
   return null;
 }

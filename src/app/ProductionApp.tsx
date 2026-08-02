@@ -1,6 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BrowserRouter, useLocation } from "react-router";
 import V5App from "../versions/v5-multipage/App";
+import {
+  createHeadBag,
+  HeadProvider,
+} from "../versions/v5-multipage/components/HeadContext";
 
 const GA_MEASUREMENT_ID = "G-PQ3X8RDYHS";
 const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
@@ -30,10 +34,14 @@ function AnalyticsPageViews() {
 }
 
 export default function ProductionApp() {
+  const [head] = useState(() => createHeadBag());
+
   return (
-    <BrowserRouter basename={routerBasename}>
-      <AnalyticsPageViews />
-      <V5App />
-    </BrowserRouter>
+    <HeadProvider head={head}>
+      <BrowserRouter basename={routerBasename}>
+        <AnalyticsPageViews />
+        <V5App />
+      </BrowserRouter>
+    </HeadProvider>
   );
 }

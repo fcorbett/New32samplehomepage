@@ -70,8 +70,16 @@
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(.+)/$ /$1 [R=301,L]
 
-  # SPA fallback: existing files/dirs (api/, assets/, etc.) pass through
+  # Prerendered pages: /about → about.html (must run before 404)
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^ index.html [L]
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+[^/])$ $1.html [L]
+
+  # Unknown paths → HTTP 404 (ErrorDocument serves the prerendered page)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ - [R=404,L]
 </IfModule>
+
+ErrorDocument 404 /404.html

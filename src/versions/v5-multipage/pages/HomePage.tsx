@@ -11,7 +11,7 @@ import { PageMeta } from "../components/PageMeta";
 import { JsonLd } from "../components/JsonLd";
 import { homeSeo } from "../content/homeSeo";
 import { pages } from "../content/nav";
-import { dentistSchema, canonicalUrl } from "../content/schema";
+import { dentistSchema, canonicalUrl, websiteSchema } from "../content/schema";
 import { useVersionPath } from "../hooks/useVersionPath";
 
 export function HomePage() {
@@ -22,7 +22,9 @@ export function HomePage() {
   return (
     <>
       <PageMeta title={homeSeo.title} description={homeSeo.description} />
-      <JsonLd data={dentistSchema(canonicalUrl("/"))} />
+      <JsonLd
+        data={[dentistSchema(canonicalUrl("/")), websiteSchema()]}
+      />
       <Hero />
       <Intro />
       <FeaturedQuote />

@@ -9,9 +9,11 @@ import { Prose } from "../components/Prose";
 import { CallBand } from "../components/CallBand";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import { FaqBlock } from "../components/FaqBlock";
+import { JsonLd } from "../components/JsonLd";
 import { ScrollReveal } from "../components/ScrollReveal";
 import { PictureImage } from "../components/PictureImage";
 import { ServicesFactsCard } from "../components/ServicesFactsCard";
+import { serviceSchema } from "../content/schema";
 import { useVersionPath } from "../hooks/useVersionPath";
 
 function linkPhrase(text: string, phrase: string, to: string): ReactNode {
@@ -41,6 +43,7 @@ export function ServicesPage() {
         title={servicesPage.seo.title}
         description={servicesPage.seo.description}
       />
+      <JsonLd data={serviceSchema(servicesPage.cosmeticList)} />
       <Breadcrumbs
         items={[{ name: "Home", to: homeTo }, { name: "Services" }]}
       />
