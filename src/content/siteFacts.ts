@@ -37,8 +37,12 @@ export const location = {
   mapsUrl:
     "https://www.google.com/maps/dir//new32+Aesthetic+and+Family+Dentistry/",
   googlePlacesUrl: `https://www.google.com/maps/place/?q=place_id:${GOOGLE_PLACE_ID}`,
-  /** Official Maps embed for the Google Business Profile (no API key). */
-  mapsEmbedUrl: `https://www.google.com/maps/embed?pb=!1m2!2m1!1splace_id:${GOOGLE_PLACE_ID}`,
+  /**
+   * Maps embed pinned to the Google Business Profile.
+   * Uses the place feature id (not place_id:… alone — that falls back to a world map).
+   */
+  mapsEmbedUrl:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2685.5!2d-122.301916!3d47.665002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549014862ace6b7f%3A0x9cdf4c7aa3c8eb8f!2snew32%20Cosmetic%20and%20Family%20Dentistry!5e0!3m2!1sen!2sus!4v1720000000000",
 };
 
 export const lastUpdated = "May 2026";
