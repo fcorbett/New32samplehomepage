@@ -44,7 +44,6 @@ export const aboutPage: PageContent & {
 export const officePage: PageContent & {
   paragraphs: string[];
   virtualTourHeading: string;
-  virtualTourBody: string;
 } = {
   h1: "Our office at Northcut Landing",
   lead:
@@ -55,9 +54,6 @@ export const officePage: PageContent & {
   ],
   // Live site has a Google tour page; we fold it in as a section (no new marketing copy).
   virtualTourHeading: "Google tour",
-  // Source: https://new32dental.com/contact-us/ (parking note paired with map section)
-  virtualTourBody:
-    "We are located in Northcut Landing's West building. There is plenty of onsite, underground parking available.",
   image: imgOffice,
   imageAlt: "The new32 dental office at Northcut Landing",
   seo: {
@@ -85,6 +81,7 @@ export const servicesPage: PageContent & {
   cosmeticIntro: "We are proud to offer the following services:",
   cosmeticList: [
     "Invisalign® Invisible Braces",
+    "Crowns",
     "Porcelain Veneers",
     "Tooth Colored Fillings",
     "Dental Implants",
@@ -99,7 +96,7 @@ export const servicesPage: PageContent & {
   familyFeatures: [
     {
       title: "Family appointments",
-      body: "Mom and kids can be seen at the same time, or one right after another. It can help a nervous child to see mom, dad, sister or brother do it first.",
+      body: "Parent and kids can be seen at the same time, or one right after another. It can help a nervous child to see mom, dad, sister or brother do it first.",
     },
     {
       title: "TV/DVD in all rooms",
@@ -107,7 +104,7 @@ export const servicesPage: PageContent & {
     },
     {
       title: "Boost & KOR whitening",
-      body: "With so much to offer for kids, we didn't forget the busy mom!",
+      body: "With so much to offer for kids, we didn't forget the busy parents!",
     },
   ],
   familyClosing: "Wonderful Smiles for the whole family!",
@@ -149,14 +146,14 @@ export const patientInfoPage: PageContent & {
   feesHeading: "Fees & insurance",
   feesParagraphs: [
     "We appreciate the emotional and financial investment required to proceed with comprehensive dentistry. During your consultation, we will review your treatment plan with you and provide a description of the proposed treatment. We will also discuss your investment prior to any treatment, along with several payment options for your convenience.",
-    "We accept any benefit plan that allows you the freedom to choose your own dentist. In fact, over 90% of our patients utilize dental insurance to help pay for their care. We are, however, not contracted with any insurance companies due to the limitations they impose on our patient's treatment options. There are tens of thousands of different dental benefit plans. Please give us a call if you need help understanding how your benefits would work at our office.",
+    "We accept any benefit plan that allows you the freedom to choose your own dentist. In fact, over 75% of our patients utilize dental insurance to help pay for their care. We are, however, not contracted with any insurance companies due to the limitations they impose on our patient's treatment options. There are tens of thousands of different dental benefit plans. Please give us a call if you need help understanding how your benefits would work at our office.",
     "When your dental needs, or wants, go beyond your existing budget, we work in partnership with Care Credit to help you reach optimum dental health and get that gorgeous smile you have always wanted. We also accept Visa, MasterCard and American Express.",
   ],
   insuranceNote:
     "We accept any benefit plan that lets you choose your own dentist. We are not contracted with insurance companies.",
   billPayHeading: "Bill pay",
   billPayParagraphs: [
-    "Visit our secure bill pay site to pay your bill. As of September 1st, 2022, there will be a 2.25% surcharge on all Visa, Mastercard, and American Express credit card payments. There is no surcharge for debit card payment. All debit cards will need to be phoned into the office for payment processing.",
+    "Visit our secure bill pay site to pay your bill. There is a 2.25% surcharge on all Visa, Mastercard, and American Express credit card payments. There is no surcharge for debit card payment. All debit cards will need to be phoned into the office for payment processing.",
   ],
   billPayUrl: "https://quickclick.com/r/pxopm",
   billPayCtaLabel: "Visit our secure bill pay site",

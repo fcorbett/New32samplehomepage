@@ -68,9 +68,6 @@ export function OfficePage() {
               >
                 {officePage.virtualTourHeading}
               </h2>
-              <Prose className="mb-6">
-                <p>{officePage.virtualTourBody}</p>
-              </Prose>
               <div className="relative min-h-[280px] md:min-h-[400px] bg-[var(--pnw-stone)] border border-[var(--pnw-border)] overflow-hidden">
                 <iframe
                   title="Google tour of new32 Cosmetic and Family Dentistry"
