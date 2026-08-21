@@ -21,7 +21,11 @@ function DoctorRow({ member, delay }: { member: TeamMember; delay: number }) {
             sizes="240px"
             loading="lazy"
             className="absolute inset-0 w-full h-full"
-            imgClassName="absolute inset-0 w-full h-full object-cover object-top"
+            imgClassName={
+              member.slug === "dr-beth-shaw"
+                ? "absolute inset-0 w-full h-full object-cover scale-130 origin-center object-[center_50%] -translate-x-[4%]"
+                : "absolute inset-0 w-full h-full object-cover object-top"
+            }
           />
         </div>
         <div>

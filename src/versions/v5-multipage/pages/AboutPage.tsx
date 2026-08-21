@@ -75,7 +75,7 @@ export function AboutPage() {
                     sizes="320px"
                     loading="lazy"
                     className="absolute inset-0 w-full h-full"
-                    imgClassName="absolute inset-0 w-full h-full object-cover"
+                    imgClassName="absolute inset-0 w-full h-full object-cover object-[55%_28%]"
                   />
                 </div>
               </ScrollReveal>

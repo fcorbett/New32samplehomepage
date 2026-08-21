@@ -10,6 +10,7 @@ import { contactPage } from "../content/pages";
 import { PageMeta } from "../components/PageMeta";
 import { PageHero } from "../components/PageHero";
 import { CallBand } from "../components/CallBand";
+import { CallCta } from "../components/CallCta";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import { JsonLd } from "../components/JsonLd";
 import { ScrollReveal } from "../components/ScrollReveal";
@@ -82,12 +83,7 @@ export function ContactPage() {
                     </li>
                   ))}
                 </ul>
-                <a
-                  href={phone.tel}
-                  className="inline-block mt-6 px-6 py-3 bg-[var(--pnw-moss)] text-[var(--pnw-white)] text-sm font-semibold uppercase tracking-wide hover:bg-[var(--pnw-moss-deep)] transition-colors w-fit"
-                >
-                  Call to schedule
-                </a>
+                <CallCta variant="mobileOnly" className="mt-6" />
               </div>
             </ScrollReveal>
 

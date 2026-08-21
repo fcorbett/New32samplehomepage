@@ -11,8 +11,8 @@ export const reviews = {
   google: {
     rating: 4.9,
     count: 543,
-    // Client-provided Google Business Profile share link.
-    url: "https://share.google/MQmeJA5HkRemcSEUy",
+    // Google reviews listing for this place (not the business profile share page).
+    url: `https://search.google.com/local/reviews?placeid=${GOOGLE_PLACE_ID}`,
     label: "Google",
   },
 } as const;
@@ -29,13 +29,14 @@ export const officeHours = [
   { day: "Friday", hours: "Closed" },
 ] as const;
 
+const address = "4915 25th Ave NE, Suite 107, Seattle, WA 98105";
+
 export const location = {
-  address: "4915 25th Ave NE, Suite 107, Seattle, WA 98105",
+  address,
   addressDisplay: "4915 25th Avenue Northeast #107, Seattle, WA 98105",
   parkingNote:
     "Located in Northcut Landing's West building with onsite underground parking.",
-  mapsUrl:
-    "https://www.google.com/maps/dir//new32+Aesthetic+and+Family+Dentistry/",
+  mapsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`,
   googlePlacesUrl: `https://www.google.com/maps/place/?q=place_id:${GOOGLE_PLACE_ID}`,
   /**
    * Maps embed pinned to the Google Business Profile.

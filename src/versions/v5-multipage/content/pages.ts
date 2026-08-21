@@ -1,6 +1,6 @@
 // Page copy sourced exclusively from https://new32dental.com/
 // Image-heavy module — only import from lazy route pages, not HomePage.
-import imgAbout from "../../../imports/hero-team/nicole-goddard-team-hero.jpg?w=400;800&format=avif;webp;jpg&as=picture";
+import imgAbout from "../../../imports/team/drs-jacobsen-shaw-2026.jpg?w=400;800&format=avif;webp;jpg&as=picture";
 import imgOffice from "../../../imports/office/office.jpg?w=400;800&format=avif;webp;jpg&as=picture";
 import imgServices from "../../../imports/office/our-services.jpg?w=400;800&format=avif;webp;jpg&as=picture";
 import imgPatient from "../../../imports/office/patient.jpg?w=400;800&format=avif;webp;jpg&as=picture";
@@ -31,7 +31,7 @@ export const aboutPage: PageContent & {
   ],
   affiliationsHeading: "Professional Affiliations",
   image: imgAbout,
-  imageAlt: "The new32 dentists smiling together outdoors in Seattle",
+  imageAlt: "Dr. Beth Jacobsen and Dr. Beth Shaw in the new32 office in Seattle",
   seo: {
     title: "About | new32 Cosmetic and Family Dentistry | Seattle",
     description:
@@ -71,7 +71,7 @@ export const servicesPage: PageContent & {
   cosmeticList: string[];
   familyHeading: string;
   familyIntro: string;
-  familyFeatures: { title: string; body: string }[];
+  familyFeatures: { title: string; body: string; emphasize?: string[]; wide?: boolean }[];
   familyClosing: string;
 } = {
   h1: "Our services",
@@ -104,10 +104,11 @@ export const servicesPage: PageContent & {
     },
     {
       title: "Boost & KOR whitening",
-      body: "With so much to offer for kids, we didn't forget the busy parents!",
+      body: "Professional whitening can brighten your smile safely and effectively, with options tailored to your goals and lifestyle. We offer both Opalescence Boost, an in-office treatment for noticeable results in a single visit, and KöR Whitening, a more comprehensive system designed for deeper or more stubborn discoloration. We’ll help you choose the approach that makes the most sense for your smile. With so much to offer, we don't forget the busy parents.",
+      emphasize: ["Opalescence Boost", "KöR Whitening"],
+      wide: true,
     },
   ],
-  familyClosing: "Wonderful Smiles for the whole family!",
   image: imgServices,
   imageAlt: "Cosmetic and family dental care at new32",
   seo: {

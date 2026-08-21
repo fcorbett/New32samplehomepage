@@ -33,6 +33,23 @@ function linkPhrase(text: string, phrase: string, to: string): ReactNode {
   );
 }
 
+function emphasizePhrases(
+  text: string,
+  phrases: readonly string[] = [],
+): ReactNode {
+  if (phrases.length === 0) return text;
+  const [phrase, ...rest] = phrases;
+  const idx = text.indexOf(phrase);
+  if (idx === -1) return emphasizePhrases(text, rest);
+  return (
+    <>
+      {emphasizePhrases(text.slice(0, idx), rest)}
+      <strong className="font-semibold text-[var(--pnw-ink)]">{phrase}</strong>
+      {emphasizePhrases(text.slice(idx + phrase.length), rest)}
+    </>
+  );
+}
+
 export function ServicesPage() {
   const homeTo = useVersionPath();
   const contactTo = useVersionPath(pages.contact.path);
@@ -98,13 +115,13 @@ export function ServicesPage() {
                 {servicesPage.familyFeatures.map((feature) => (
                   <div
                     key={feature.title}
-                    className="border border-[var(--pnw-border)] bg-[var(--pnw-white)] p-5"
+                    className={`border border-[var(--pnw-border)] bg-[var(--pnw-white)] p-5${feature.wide ? " sm:col-span-2" : ""}`}
                   >
                     <h3 className="font-display text-[var(--pnw-ink)] text-xl md:text-2xl mb-2">
                       {feature.title}
                     </h3>
                     <p className="text-[var(--pnw-ink-soft)] text-base leading-relaxed">
-                      {feature.body}
+                      {emphasizePhrases(feature.body, feature.emphasize)}
                     </p>
                   </div>
                 ))}

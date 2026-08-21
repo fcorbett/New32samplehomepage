@@ -1,14 +1,7 @@
-import { Link } from "react-router";
-import { phone, officeHours } from "../../../content/siteFacts";
-import { pages } from "../content/nav";
-import { useVersionPath } from "../hooks/useVersionPath";
-
-const buttonClassName =
-  "inline-flex items-center justify-center w-full px-5 py-2.5 min-h-[44px] border border-[var(--pnw-moss)] text-[var(--pnw-moss)] text-sm font-semibold hover:bg-[var(--pnw-moss)] hover:text-[var(--pnw-white)] transition-colors text-center";
+import { officeHours } from "../../../content/siteFacts";
+import { CallCta } from "./CallCta";
 
 export function ServicesFactsCard() {
-  const contactTo = useVersionPath(pages.contact.path);
-
   return (
     <aside
       className="border border-[var(--pnw-border)] bg-[var(--pnw-white)] p-6"
@@ -23,18 +16,10 @@ export function ServicesFactsCard() {
 
       <div className="space-y-5">
         <div>
-          <Link to={contactTo} className={buttonClassName}>
-            Schedule a consultation
-          </Link>
-        </div>
-
-        <div>
           <p className="text-xs font-semibold tracking-wide text-[var(--pnw-moss)] uppercase mb-2">
             Call
           </p>
-          <a href={phone.tel} className={buttonClassName}>
-            {phone.display}
-          </a>
+          <CallCta variant="outline" />
         </div>
 
         <div>

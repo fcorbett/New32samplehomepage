@@ -80,7 +80,7 @@ export function OfficePage() {
               </div>
               <div className="mt-6 flex flex-col gap-2 text-sm md:text-base text-[var(--pnw-ink-soft)]">
                 <a
-                  href={location.googlePlacesUrl}
+                  href={location.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="pnw-text-link text-[var(--pnw-moss)] underline hover:text-[var(--pnw-clay)] w-fit"

@@ -22,7 +22,7 @@ export function Awards() {
         </ScrollReveal>
 
         <ScrollReveal delay={0.1}>
-          <p className="text-center font-display italic text-[var(--pnw-ink-soft)] text-lg md:text-xl">
+          <p className="text-center font-display italic text-[var(--pnw-ink-soft)] text-xl md:text-2xl">
             Seattle Met Top Dentist, every year since 2015
           </p>
         </ScrollReveal>

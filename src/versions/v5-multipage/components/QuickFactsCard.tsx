@@ -1,5 +1,6 @@
-import { phone, officeHours } from "../../../content/siteFacts";
+import { officeHours } from "../../../content/siteFacts";
 import { patientInfoPage } from "../content/pages";
+import { CallCta } from "./CallCta";
 
 const buttonClassName =
   "inline-flex items-center justify-center w-full px-5 py-2.5 min-h-[44px] border border-[var(--pnw-moss)] text-[var(--pnw-moss)] text-sm font-semibold hover:bg-[var(--pnw-moss)] hover:text-[var(--pnw-white)] transition-colors text-center";
@@ -22,9 +23,7 @@ export function QuickFactsCard() {
           <p className="text-xs font-semibold tracking-wide text-[var(--pnw-moss)] uppercase mb-2">
             Call
           </p>
-          <a href={phone.tel} className={buttonClassName}>
-            {phone.display}
-          </a>
+          <CallCta variant="outline" />
         </div>
 
         <div>

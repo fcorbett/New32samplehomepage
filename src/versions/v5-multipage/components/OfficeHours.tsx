@@ -4,6 +4,7 @@ import {
   officeHours,
   phone,
 } from "../../../content/siteFacts";
+import { CallCta } from "./CallCta";
 import { ScrollReveal } from "./ScrollReveal";
 
 export function OfficeHours() {
@@ -75,12 +76,7 @@ export function OfficeHours() {
               </p>
             </div>
 
-            <a
-              href={phone.tel}
-              className="inline-block mt-8 px-6 py-3 bg-[var(--pnw-moss)] text-[var(--pnw-white)] text-sm font-semibold uppercase tracking-wide hover:bg-[var(--pnw-moss-deep)] transition-colors"
-            >
-              Call to schedule
-            </a>
+            <CallCta variant="mobileOnly" className="mt-8" />
           </ScrollReveal>
 
           <ScrollReveal delay={0.16}>

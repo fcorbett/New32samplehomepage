@@ -61,7 +61,7 @@ export function Navbar() {
       <div className="pnw-container flex items-center justify-between py-6 md:py-7">
         <Link
           to={homeTo}
-          className="w-32 md:w-[220px] h-11 md:h-[60px] relative shrink-0"
+          className="w-40 md:w-[280px] h-14 md:h-[76px] relative shrink-0"
           aria-label="new32 home"
         >
           <img

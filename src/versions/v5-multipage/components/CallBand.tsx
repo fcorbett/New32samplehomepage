@@ -1,4 +1,4 @@
-import { phone } from "../../../content/siteFacts";
+import { CallCta } from "./CallCta";
 
 export function CallBand() {
   return (
@@ -7,12 +7,7 @@ export function CallBand() {
         <p className="font-display text-[var(--pnw-white)] text-2xl md:text-3xl leading-snug">
           Call to schedule
         </p>
-        <a
-          href={phone.tel}
-          className="inline-block px-6 py-3 bg-[var(--pnw-white)] text-[var(--pnw-moss-deep)] text-sm font-semibold uppercase tracking-wide hover:opacity-90 transition-opacity w-fit"
-        >
-          {phone.display}
-        </a>
+        <CallCta variant="onDark" />
       </div>
     </div>
   );

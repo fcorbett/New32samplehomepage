@@ -1,5 +1,5 @@
-import { phone } from "../../../content/siteFacts";
 import imgHero from "../../../imports/hero-team/nicole-goddard-team-hero.jpg?w=480;800;1024&format=avif;webp;jpg&as=picture";
+import { CallCta } from "./CallCta";
 import { PictureImage } from "./PictureImage";
 
 /**
@@ -9,9 +9,9 @@ import { PictureImage } from "./PictureImage";
 export function Hero() {
   return (
     <div className="pnw-hero-row grid grid-cols-1 lg:grid-cols-2 w-full min-w-0">
-      <div className="pnw-hero-pad flex items-center bg-[var(--pnw-white)] px-6 md:px-16 py-16 md:py-20 lg:py-0 lg:min-h-[620px]">
+      <div className="pnw-hero-pad flex items-center bg-[var(--pnw-stone)] px-6 md:px-16 py-16 md:py-20 lg:py-0 lg:min-h-[620px]">
         <div className="max-w-lg">
-          <p className="font-semibold text-[var(--pnw-moss)] text-sm tracking-wide mb-6">
+          <p className="font-semibold text-[var(--pnw-moss)] text-base md:text-lg tracking-wide mb-6">
             Modern family dentistry, rooted in Seattle
           </p>
           <h1 className="font-display font-normal text-[var(--pnw-ink)] text-4xl md:text-5xl lg:text-[56px] leading-[1.1] mb-6">
@@ -24,12 +24,7 @@ export function Hero() {
             excellence, and thoughtful prevention — for every generation of
             your family.
           </p>
-          <a
-            href={phone.tel}
-            className="inline-block px-6 py-3 bg-[var(--pnw-moss)] text-[var(--pnw-white)] text-sm font-semibold uppercase tracking-wide hover:bg-[var(--pnw-moss-deep)] transition-colors"
-          >
-            Call to schedule
-          </a>
+          <CallCta variant="filled" />
         </div>
       </div>
 

@@ -220,7 +220,7 @@ export function ContactForm({ className = "" }: ContactFormProps) {
         </p>
         <a
           href={phone.tel}
-          className="inline-flex items-center justify-center rounded-full bg-[var(--pnw-moss,#5f6b4f)] px-6 py-3 text-sm font-medium text-[var(--pnw-white,#fffcf6)] hover:bg-[var(--pnw-moss-deep,#333b29)] transition-colors"
+          className="inline-flex items-center justify-center rounded-full bg-[var(--pnw-moss,#5f6b4f)] px-6 py-3 text-sm font-medium text-[var(--pnw-white,#fffcf6)] hover:bg-[var(--pnw-moss-deep,#333b29)] transition-colors md:rounded-none md:bg-transparent md:px-0 md:py-0 md:font-normal md:text-[var(--pnw-moss,#5f6b4f)] md:underline md:hover:bg-transparent md:hover:text-[var(--pnw-clay,#9a6b4f)]"
         >
           Call {phone.display}
         </a>
