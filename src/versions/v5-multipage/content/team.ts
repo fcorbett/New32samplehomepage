@@ -227,5 +227,5 @@ export const affiliations = [
   "Members of the American Academy of Pediatric Dentistry",
   "Members of the American Dental Association",
   "Certified in Invisalign",
-  "Certified in cad-cam CEREC technology",
+  "Seattle Met Top Dentists 2015 - Present",
 ] as const;

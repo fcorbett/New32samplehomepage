@@ -37,13 +37,13 @@ export const patientInfoFaqs: FaqItem[] = [
 
 export const servicesFaqs: FaqItem[] = [
   {
-    question: "What services does new32 offer?",
+    question: "What happens if I need a specialist?",
     answer:
-      "We are proud to offer the following services: Invisalign® Invisible Braces, Porcelain Veneers, Tooth Colored Fillings, Dental Implants, Nightguards, Sports Guards, Low Radiation Digital X-Rays, and Intraoral scanning.",
+      "Some dental needs are best treated by a specialist. When specialty care is needed, we work closely with a trusted network of exceptional local specialists in periodontics, endodontics, oral surgery, and prosthodontics. Rather than simply handing you a referral, we remain actively involved in your care—we communicate with your specialists, coordinate treatment and sequencing, and keep the overall plan in focus.",
   },
   {
     question: "Can the whole family be seen together?",
     answer:
-      "Mom and kids can be seen at the same time, or one right after another. It can help a nervous child to see mom, dad, sister or brother do it first.",
+      "Parent and kids can be seen at the same time, or one right after another. It can help a nervous child to see mom, dad, sister or brother do it first.",
   },
 ];

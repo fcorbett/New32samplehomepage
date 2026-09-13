@@ -1,6 +1,6 @@
 // Page copy sourced exclusively from https://new32dental.com/
 // Image-heavy module — only import from lazy route pages, not HomePage.
-import imgAbout from "../../../imports/team/drs-jacobsen-shaw-2026.jpg?w=400;800&format=avif;webp;jpg&as=picture";
+import imgAbout from "../../../imports/team/drs-shaw-jacobsen-seattle-dentists-mountaineering.jpg?w=400;800&format=avif;webp;jpg&as=picture";
 import imgOffice from "../../../imports/office/office.jpg?w=400;800&format=avif;webp;jpg&as=picture";
 import imgServices from "../../../imports/office/our-services.jpg?w=400;800&format=avif;webp;jpg&as=picture";
 import imgPatient from "../../../imports/office/patient.jpg?w=400;800&format=avif;webp;jpg&as=picture";
@@ -24,14 +24,15 @@ export const aboutPage: PageContent & {
 } = {
   h1: "About new32",
   lead:
-    "Dr. Shaw and Dr. Jacobsen met over 10 years ago at the University of Washington and have been close friends ever since. This longevity has led to an enormous amount of trust, not only in their friendship but also in their partnership.",
+    "Dr. Shaw and Dr. Jacobsen met over 10 years ago at the University of Washington and have been close friends ever since. Over the years, they have shared a love of the mountains and countless adventures together—experiences built on preparation, communication, and a tremendous amount of trust in one another. That same trust is at the heart of their partnership and the way they care for their patients.",
   paragraphs: [
     "Their long history with the University of Washington and with Seattle has inspired a strong desire to serve the community that has served them so well over the years.",
     "As this field continues to advance in technology and product development, both doctors are committed to keeping up-to-date with various disciplines in dentistry.",
   ],
   affiliationsHeading: "Professional Affiliations",
   image: imgAbout,
-  imageAlt: "Dr. Beth Jacobsen and Dr. Beth Shaw in the new32 office in Seattle",
+  imageAlt:
+    "Dr. Beth Shaw and Dr. Beth Jacobsen, Seattle dentists at new32, mountaineering in the mountains",
   seo: {
     title: "About | new32 Cosmetic and Family Dentistry | Seattle",
     description:
@@ -65,10 +66,15 @@ export const officePage: PageContent & {
 };
 
 // Sources: https://new32dental.com/our-services/ + https://new32dental.com/family-services/
+export type ServiceCategory = {
+  heading: string;
+  intro: string;
+  items?: string[];
+  paragraphs?: string[];
+};
+
 export const servicesPage: PageContent & {
-  cosmeticHeading: string;
-  cosmeticIntro: string;
-  cosmeticList: string[];
+  serviceCategories: ServiceCategory[];
   familyHeading: string;
   familyIntro: string;
   familyFeatures: { title: string; body: string; emphasize?: string[]; wide?: boolean }[];
@@ -76,31 +82,69 @@ export const servicesPage: PageContent & {
 } = {
   h1: "Our services",
   lead:
-    "new32 is proud to offer high-end cosmetic dentistry as well as a broad range of general dentistry for the whole family. We provide the latest technology that dentistry has to offer.",
-  cosmeticHeading: "Our services",
-  cosmeticIntro: "We are proud to offer the following services:",
-  cosmeticList: [
-    "Invisalign® Invisible Braces",
-    "Crowns",
-    "Porcelain Veneers",
-    "Tooth Colored Fillings",
-    "Dental Implants",
-    "Nightguards",
-    "Sports Guards",
-    "Low Radiation Digital X-Rays",
-    "Intraoral scanning",
+    "At new32, we provide comprehensive dental care for individuals and families at every stage of life. From prevention and routine dentistry to complex restorative and cosmetic treatment, our goal is to understand the whole picture and create a thoughtful, individualized plan for your long-term oral health.",
+  serviceCategories: [
+    {
+      heading: "Preventive & General Dentistry",
+      intro:
+        "The foundation of a healthy smile starts with consistent, proactive care.",
+      items: [
+        "Comprehensive and routine dental exams",
+        "Dental cleanings and periodontal maintenance",
+        "Digital X-rays and diagnostic imaging",
+        "Fluoride treatments",
+        "Sealants",
+        "Tooth-colored fillings",
+        "Nightguards and sports guards",
+        "Emergency dental care",
+      ],
+    },
+    {
+      heading: "Restorative Dentistry",
+      intro:
+        "When teeth are damaged, worn, or missing, we focus on restoring health, function, and longevity while preserving as much natural tooth structure as possible.",
+      items: [
+        "Crowns and bridges",
+        "Implant restorations",
+        "Treatment of cracked and worn teeth",
+        "Replacement of failing or aging dental work",
+        "Full-mouth and complex restorative treatment",
+      ],
+    },
+    {
+      heading: "Cosmetic Dentistry",
+      intro:
+        "Our approach to cosmetic dentistry is highly personalized, with an emphasis on natural-looking results that complement your smile and facial features.",
+      items: [
+        "Porcelain veneers",
+        "Cosmetic bonding",
+        "Professional teeth whitening",
+        "Invisalign® clear aligners",
+        "Smile makeovers",
+        "Esthetic replacement of existing dental work",
+      ],
+    },
+    {
+      heading: "Coordinated Specialty Care",
+      intro:
+        "Some dental needs are best treated by a specialist. When specialty care is needed, we work closely with a trusted network of exceptional local specialists in periodontics, endodontics, oral surgery, and prosthodontics.",
+      paragraphs: [
+        "Rather than simply handing you a referral, we remain actively involved in your care. We communicate with your specialists, coordinate treatment and sequencing, and keep the overall plan in focus.",
+        "This collaborative approach is particularly valuable for complex cases involving multiple areas of dentistry, allowing your general dentist and specialists to work together toward a cohesive treatment plan.",
+      ],
+    },
   ],
   familyHeading: "Family services",
   familyIntro:
-    "No matter the age, your family's teeth are important. If you have questions about your children, your parents or your teeth, please contact our office. Wonderful Smiles for the whole family! Visit our beautiful state-of-the-art office today! We offer many family-friendly services, including:",
+    "No matter the age, your family's teeth are important. If you have questions about your children, your parents or your teeth, please contact our office. Wonderful Smiles for the whole family. Visit our beautiful state-of-the-art office today. We offer many family-friendly services, including:",
   familyFeatures: [
     {
       title: "Family appointments",
       body: "Parent and kids can be seen at the same time, or one right after another. It can help a nervous child to see mom, dad, sister or brother do it first.",
     },
     {
-      title: "TV/DVD in all rooms",
-      body: "Our DVD collection includes a wide selection of kid's movies.",
+      title: "Netflix in all rooms",
+      body: "Includes a wide selection of kid's movies.",
     },
     {
       title: "Boost & KOR whitening",
@@ -109,13 +153,14 @@ export const servicesPage: PageContent & {
       wide: true,
     },
   ],
+  familyClosing: "",
   image: imgServices,
   imageAlt: "Cosmetic and family dental care at new32",
   seo: {
     title: "Services | new32 Cosmetic and Family Dentistry | Seattle",
     description:
-      "new32 offers Invisalign, veneers, implants, fillings, and family-friendly dentistry for the whole family in Seattle.",
-    dateModified: "August 2026",
+      "Preventive, restorative, cosmetic, and specialty-coordinated dental care plus family-friendly dentistry at new32 in Seattle.",
+    dateModified: "September 2026",
   },
 };
 
@@ -140,7 +185,7 @@ export const patientInfoPage: PageContent & {
     "From nitrous oxide to entertainment and small comforts, we do whatever it takes to help you relax during your visit.",
   comfortAmenities: [
     "Nitrous oxide (laughing gas) available for all appointments",
-    "Listen to music of your choice, or watch cable TV or a DVD on your own 20″ monitor",
+    "Listen to music of your choice, or watch Netflix on your own 20″ monitor",
     "Blankets, back pillows, and neck pillows available on request",
     "Free high-speed wifi, plus a 42″ LCD TV in our reception area",
   ],

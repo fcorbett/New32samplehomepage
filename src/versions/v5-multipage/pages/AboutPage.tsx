@@ -28,8 +28,23 @@ export function AboutPage() {
       <PageHero title={aboutPage.h1} lead={aboutPage.lead} />
       <div className="w-full px-6 md:px-16 py-12 md:py-16">
         <div className="pnw-container">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10 lg:gap-16 items-start">
-            <ScrollReveal>
+          <div className="flex flex-col lg:grid lg:grid-cols-[1fr_420px] gap-10 lg:gap-16 items-start">
+            {aboutPage.image && (
+              <ScrollReveal delay={0.1} className="order-1 lg:order-2 w-full">
+                <div className="relative aspect-[4/3] overflow-hidden bg-[var(--pnw-stone-deep)] border border-[var(--pnw-border)]">
+                  <PictureImage
+                    picture={aboutPage.image}
+                    alt={aboutPage.imageAlt ?? ""}
+                    sizes="(min-width: 1024px) 420px, 100vw"
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full"
+                    imgClassName="absolute inset-0 w-full h-full object-cover object-[center_48%]"
+                  />
+                </div>
+              </ScrollReveal>
+            )}
+
+            <ScrollReveal className="order-2 lg:order-1">
               <Prose className="max-w-[65ch]">
                 {aboutPage.paragraphs.map((p) => (
                   <p key={p.slice(0, 40)}>{p}</p>
@@ -65,21 +80,6 @@ export function AboutPage() {
                 ))}
               </ul>
             </ScrollReveal>
-
-            {aboutPage.image && (
-              <ScrollReveal delay={0.1}>
-                <div className="relative aspect-square overflow-hidden bg-[var(--pnw-stone-deep)] border border-[var(--pnw-border)]">
-                  <PictureImage
-                    picture={aboutPage.image}
-                    alt={aboutPage.imageAlt ?? ""}
-                    sizes="320px"
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full"
-                    imgClassName="absolute inset-0 w-full h-full object-cover object-[55%_28%]"
-                  />
-                </div>
-              </ScrollReveal>
-            )}
           </div>
 
           <TeamRoster />

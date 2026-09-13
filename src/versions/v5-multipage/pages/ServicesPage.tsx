@@ -53,6 +53,9 @@ function emphasizePhrases(
 export function ServicesPage() {
   const homeTo = useVersionPath();
   const contactTo = useVersionPath(pages.contact.path);
+  const serviceNames = servicesPage.serviceCategories.flatMap(
+    (category) => category.items ?? [],
+  );
 
   return (
     <>
@@ -60,7 +63,7 @@ export function ServicesPage() {
         title={servicesPage.seo.title}
         description={servicesPage.seo.description}
       />
-      <JsonLd data={serviceSchema(servicesPage.cosmeticList)} />
+      <JsonLd data={serviceSchema(serviceNames)} />
       <Breadcrumbs
         items={[{ name: "Home", to: homeTo }, { name: "Services" }]}
       />
@@ -72,29 +75,41 @@ export function ServicesPage() {
           </div>
 
           <div className="order-2 lg:order-1">
-            <ScrollReveal>
-              <div className="max-w-[65ch]">
-                <h2 className="font-display text-[var(--pnw-ink)] text-2xl md:text-3xl mb-4">
-                  {servicesPage.cosmeticHeading}
-                </h2>
-                <Prose>
-                  <p>{servicesPage.cosmeticIntro}</p>
-                </Prose>
-              </div>
-              <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 text-[var(--pnw-ink)] text-base md:text-lg">
-                {servicesPage.cosmeticList.map((item) => (
-                  <li
-                    key={item}
-                    className="flex gap-3 border-b border-[var(--pnw-border)] pb-3"
+            {servicesPage.serviceCategories.map((category, index) => (
+              <ScrollReveal key={category.heading} delay={index * 0.04}>
+                <div className="max-w-[65ch]">
+                  <h2
+                    className={`font-display text-[var(--pnw-ink)] text-2xl md:text-3xl mb-4${index > 0 ? " mt-14" : ""}`}
                   >
-                    <span className="text-[var(--pnw-clay-accent)]" aria-hidden>
-                      ·
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </ScrollReveal>
+                    {category.heading}
+                  </h2>
+                  <Prose>
+                    <p>{category.intro}</p>
+                    {category.paragraphs?.map((paragraph) => (
+                      <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+                    ))}
+                  </Prose>
+                </div>
+                {category.items && category.items.length > 0 && (
+                  <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 text-[var(--pnw-ink)] text-base md:text-lg">
+                    {category.items.map((item) => (
+                      <li
+                        key={item}
+                        className="flex gap-3 border-b border-[var(--pnw-border)] pb-3"
+                      >
+                        <span
+                          className="text-[var(--pnw-clay-accent)]"
+                          aria-hidden
+                        >
+                          ·
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </ScrollReveal>
+            ))}
 
             <ScrollReveal delay={0.08}>
               <div className="max-w-[65ch]">
@@ -126,11 +141,13 @@ export function ServicesPage() {
                   </div>
                 ))}
               </div>
-              <div className="max-w-[65ch]">
-                <p className="font-display text-[var(--pnw-ink)] text-xl mt-10">
-                  {servicesPage.familyClosing}
-                </p>
-              </div>
+              {servicesPage.familyClosing ? (
+                <div className="max-w-[65ch]">
+                  <p className="font-display text-[var(--pnw-ink)] text-xl mt-10">
+                    {servicesPage.familyClosing}
+                  </p>
+                </div>
+              ) : null}
               {servicesPage.image && (
                 <div className="relative mt-10 aspect-[16/10] overflow-hidden bg-[var(--pnw-stone-deep)]">
                   <PictureImage
