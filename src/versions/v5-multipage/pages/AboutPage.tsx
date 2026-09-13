@@ -38,7 +38,7 @@ export function AboutPage() {
                     sizes="(min-width: 1024px) 420px, 100vw"
                     loading="lazy"
                     className="absolute inset-0 w-full h-full"
-                    imgClassName="absolute inset-0 w-full h-full object-cover object-[center_48%]"
+                    imgClassName="absolute inset-0 w-full h-full object-cover object-center"
                   />
                 </div>
               </ScrollReveal>
@@ -56,9 +56,9 @@ export function AboutPage() {
               </h2>
               <ul className="space-y-3 text-[var(--pnw-ink-soft)] text-base leading-relaxed">
                 {affiliations.map((item) => (
-                  <li key={item} className="flex gap-3">
+                  <li key={item} className="flex gap-3 items-start">
                     <span
-                      className="text-[var(--pnw-clay-accent)] mt-1.5 shrink-0"
+                      className="text-[var(--pnw-clay-accent)] shrink-0"
                       aria-hidden
                     >
                       ·

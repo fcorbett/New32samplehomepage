@@ -30,9 +30,11 @@ function BulletList({ items }: { items: string[] }) {
       {items.map((item) => (
         <li key={item} className="flex gap-3 items-start">
           <span
-            className="mt-[0.65em] size-1.5 shrink-0 rounded-full bg-[var(--pnw-clay-accent)]"
+            className="text-[var(--pnw-clay-accent)] shrink-0"
             aria-hidden
-          />
+          >
+            ·
+          </span>
           <span>{item}</span>
         </li>
       ))}

@@ -95,10 +95,10 @@ export function ServicesPage() {
                     {category.items.map((item) => (
                       <li
                         key={item}
-                        className="flex gap-3 border-b border-[var(--pnw-border)] pb-3"
+                        className="flex gap-3 items-start border-b border-[var(--pnw-border)] pb-3"
                       >
                         <span
-                          className="text-[var(--pnw-clay-accent)]"
+                          className="text-[var(--pnw-clay-accent)] shrink-0"
                           aria-hidden
                         >
                           ·
